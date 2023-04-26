@@ -38,8 +38,9 @@ jobs:
           echo "Are bananas tasty? Previous script says:"
           echo $banana
 
-          ls -lah the-cache
+          ls -lah the-cache || true
       
       - name: Filling cache
         run: |
+          mkdir -p the-cache
           echo hello world > $( mktemp -p the-cache )
