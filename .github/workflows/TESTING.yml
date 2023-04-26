@@ -25,8 +25,21 @@ jobs:
           echo "We are working in the directory $GITHUB_WORKSPACE"
           echo "Exporting a variable to env: banana=tasty"
           echo "banana=tasty" > "$GITHUB_ENV"
+          echo "cache_key=cache-$( echo -n $( date --iso-8601=d )  | tr -c '[0-9-T]' '_' )"
+          
+      - name: Cache
+        uses: actions/cache@v2.1.8
+        with:
+          path: the-cache
+          key: ${{ env.cache_key }}
 
-      - name: Second
+      - name: Checking the cache
         run: |
           echo "Are bananas tasty? Previous script says:"
           echo $banana
+
+          ls -lah the-cache
+      
+      - name: Filling cache
+        run: |
+          echo hello world > $( mktemp -p the-cache )
