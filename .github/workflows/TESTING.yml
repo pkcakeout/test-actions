@@ -24,8 +24,8 @@ jobs:
         run: |
           echo "We are working in the directory $GITHUB_WORKSPACE"
           echo "Exporting a variable to env: banana=tasty"
-          echo "banana=tasty" > "$GITHUB_ENV"
-          echo "cache_key=cache-$( echo -n $( date --iso-8601=d )  | tr -c '[0-9-T]' '_' )"
+          echo "banana=tasty" >> "$GITHUB_ENV"
+          echo "cache_key=cache-$( echo -n $( date --iso-8601=d )  | tr -c '[0-9-T]' '_' )" >> "$GITHUB_ENV"
           
       - name: Cache
         uses: actions/cache@v2.1.8
