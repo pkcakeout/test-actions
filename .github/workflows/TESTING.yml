@@ -28,7 +28,7 @@ jobs:
           echo "cache_key=cache-$( date +%Y_%m_%dT%H_%M_%S )" >> "$GITHUB_ENV"
           
       - name: Cache
-        uses: actions/cache@v2.1.8
+        uses: actions/cache@v3.3.1
         with:
           path: the-cache
           key: ${{ env.cache_key }}
