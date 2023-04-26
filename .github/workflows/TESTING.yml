@@ -1,0 +1,25 @@
+name: TESTING
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      workflow_value: 1337
+
+jobs:
+  testjob:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: First
+        run: |
+          echo "We are working in the directory $GITHUB_WORKSPACE"
+          echo "Exporting a variable to env: banana=tasty"
+          echo "banana=tasty" > "$GITHUB_ENV"
+
+      - name: Second
+        run: |
+          echo "Are bananas tasty? Previous script says:"
+          echo $banana
